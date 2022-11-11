@@ -1,0 +1,109 @@
+|SerialEncoder
+clk => Counter3bit:counter30.clk
+mI => ~NO_FANOUT~
+GRst => Counter3bit:counter30.GRst
+busy <= comb.DB_MAX_OUTPUT_PORT_TYPE
+y[0] <= Counter3bit:counter30.Q[0]
+y[1] <= Counter3bit:counter30.Q[1]
+y[2] <= Counter3bit:counter30.Q[2]
+y[3] <= <GND>
+y[4] <= <GND>
+y[5] <= <GND>
+y[6] <= <GND>
+y[7] <= <GND>
+
+
+|SerialEncoder|Counter3bit:counter30
+clk => flipFlopDPET:ff0.clk
+clk => flipFlopDPET:ff1.clk
+clk => flipFlopDPET:ff2.clk
+GRst => flipFlopDPET:ff0.nRst
+GRst => flipFlopDPET:ff1.nRst
+GRst => flipFlopDPET:ff2.nRst
+Q[0] <= flipFlopDPET:ff0.Q
+Q[1] <= flipFlopDPET:ff1.Q
+Q[2] <= flipFlopDPET:ff2.Q
+
+
+|SerialEncoder|Counter3bit:counter30|flipFlopDPET:ff0
+clk => nQ~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => nQ~reg0.DATAIN
+nSet => Q.IN0
+nRst => Q.IN1
+nRst => nQ~reg0.PRESET
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+nQ <= nQ~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialEncoder|Counter3bit:counter30|gateXOR2:xor20
+x0 => y.IN0
+x1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialEncoder|Counter3bit:counter30|flipFlopDPET:ff1
+clk => nQ~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => nQ~reg0.DATAIN
+nSet => Q.IN0
+nRst => Q.IN1
+nRst => nQ~reg0.PRESET
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+nQ <= nQ~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialEncoder|Counter3bit:counter30|gateAND3:and30
+x0 => gateAND2:and_0.x0
+x1 => gateAND2:and_0.x1
+x2 => gateAND2:and_1.x1
+y <= gateAND2:and_1.y
+
+
+|SerialEncoder|Counter3bit:counter30|gateAND3:and30|gateAND2:and_0
+x0 => y.IN0
+x1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialEncoder|Counter3bit:counter30|gateAND3:and30|gateAND2:and_1
+x0 => y.IN0
+x1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialEncoder|Counter3bit:counter30|gateOR2:or20
+x0 => y.IN0
+x1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialEncoder|Counter3bit:counter30|gateAND2:and20
+x0 => y.IN0
+x1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialEncoder|Counter3bit:counter30|gateOR2:or21
+x0 => y.IN0
+x1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialEncoder|Counter3bit:counter30|flipFlopDPET:ff2
+clk => nQ~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => nQ~reg0.DATAIN
+nSet => Q.IN0
+nRst => Q.IN1
+nRst => nQ~reg0.PRESET
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+nQ <= nQ~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
